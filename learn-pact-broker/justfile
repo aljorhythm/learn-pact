@@ -1,0 +1,5 @@
+run:
+    docker compose up
+
+browser:
+    open http://localhost:9292/
