@@ -9,22 +9,17 @@ const providerApp = http.createServer((_, res) => {
 
 describe("Pact Verification", () => {
   let opts;
-  let provider = "Food";
+  const PROVIDER_NAME = "Food";
+  const BROKER_BASEURL = "http://localhost:9292";
+  
   beforeAll(async () => {
     const PROVIDER_PORT = await getPort();
-
-    const BROKER = {
-      BASEURL: "http://localhost:9292",
-    };
-
-    const PROVIDER = {
-      BASEURL: `http://localhost:${PROVIDER_PORT}`,
-    };
+    const PROVIDER_BASEURL = `http://localhost:${PROVIDER_PORT}`;
 
     opts = {
-      provider,
-      providerBaseUrl: PROVIDER.BASEURL,
-      pactBrokerUrl: BROKER.BASEURL,
+      provider: PROVIDER_NAME,
+      providerBaseUrl: PROVIDER_BASEURL,
+      pactBrokerUrl: BROKER_BASEURL,
       consumerVersionSelectors: [{ tag: "main" }],
     };
     await new Promise((resolve) => {
@@ -34,10 +29,12 @@ describe("Pact Verification", () => {
       });
     });
   });
+
   afterAll(async () => {
     await new Promise((resolve) => providerApp.close(resolve));
   });
-  it(`should validate expectations of ${provider}`, async () => {
+
+  it(`should validate expectations of ${PROVIDER_NAME}`, async () => {
     await new Verifier(opts).verifyProvider();
     console.log("Pact Verification Complete!");
   });
