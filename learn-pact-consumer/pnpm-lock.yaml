@@ -11,9 +11,6 @@ devDependencies:
   '@babel/preset-env':
     specifier: ^7.23.3
     version: 7.23.3(@babel/core@7.23.3)
-  babel-jest:
-    specifier: ^29.7.0
-    version: 29.7.0(@babel/core@7.23.3)
   jest:
     specifier: ^29.7.0
     version: 29.7.0
