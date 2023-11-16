@@ -32,6 +32,10 @@ Provider: Food
 
 `(cd consumer && just test)`
 
+### See pacts
+
+[consumer/pact/pacts](consumer/pact/pacts)
+
 ## Consumer: publish contract
 
 `(cd consumer && just publish-contracts)`

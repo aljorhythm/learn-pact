@@ -1,18 +1,19 @@
 import { pactWith } from "jest-pact";
 
-const getFoodService = (baseUrl) => {
-  return {
-    async getFood() {
-      return (await fetch(`${baseUrl}/food`)).json();
-    },
-  };
-};
+class FoodService {
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
+  }
+  async getFood() {
+    return (await fetch(`${this.baseUrl}/food`)).json();
+  }
+}
 
 pactWith({ consumer: "Person", provider: "Food" }, (provider) => {
-  let provider;
+  let foodService;
 
   beforeEach(() => {
-    provider = getFoodService(provider.mockService.baseUrl);
+    foodService = new FoodService(provider.mockService.baseUrl);
   });
 
   describe("food endpoint", () => {
@@ -31,8 +32,8 @@ pactWith({ consumer: "Person", provider: "Food" }, (provider) => {
       })
     );
 
-    it("returns status", async () => {
-      const body = await provider.getFood();
+    it("returns body", async () => {
+      const body = await foodService.getFood();
       expect(body).toEqual({});
     });
   });
