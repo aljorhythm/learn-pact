@@ -20,7 +20,7 @@ describe("Pact Verification", () => {
       provider: PROVIDER_NAME,
       providerBaseUrl: PROVIDER_BASEURL,
       pactBrokerUrl: BROKER_BASEURL,
-      consumerVersionSelectors: [{ tag: "main" }],
+      consumerVersionSelectors: [{ tag: "main", latest: true }],
     };
     await new Promise((resolve) => {
       providerApp.listen(PROVIDER_PORT, () => {
