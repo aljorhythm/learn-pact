@@ -1,0 +1,10 @@
+restart:
+    docker compose down
+    docker volume rm broker_postgres-volume || echo "it's ok no such volume"
+    docker compose up
+
+run:
+    docker compose up
+
+browser:
+    open http://localhost:9292/

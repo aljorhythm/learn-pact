@@ -1,3 +1,6 @@
+test:
+    pnpm run test
+
 publish-contracts:
     #!/bin/bash
     docker run --rm --network host -v "$(pwd)/pact":/var/pact pactfoundation/pact-cli:latest publish /var/pact/pacts \

@@ -12,10 +12,6 @@ describe("Pact Verification", () => {
   let provider = "Food";
   beforeAll(async () => {
     const PROVIDER_PORT = await getPort();
-    console.log(
-      "🚀 ~ file: pacts.test.js:15 ~ beforeAll ~ PROVIDER_PORT:",
-      PROVIDER_PORT
-    );
 
     const BROKER = {
       BASEURL: "http://localhost:9292",
@@ -39,17 +35,10 @@ describe("Pact Verification", () => {
     });
   });
   afterAll(async () => {
-    await new Promise((resolve) => providerApp.close(resolve))
+    await new Promise((resolve) => providerApp.close(resolve));
   });
-  it(`should validate expectations of ${provider}`, () => {
-    return new Verifier(opts)
-      .verifyProvider()
-      .then((output) => {
-        console.log("Pact Verification Complete!");
-        console.log(output);
-      })
-      .catch((e) => {
-        console.error("Pact verification failed :(", e);
-      });
+  it(`should validate expectations of ${provider}`, async () => {
+    await new Verifier(opts).verifyProvider();
+    console.log("Pact Verification Complete!");
   });
 });

@@ -9,10 +9,10 @@ const getFoodService = (baseUrl) => {
 };
 
 pactWith({ consumer: "Person", provider: "Food" }, (provider) => {
-  let client;
+  let provider;
 
   beforeEach(() => {
-    client = getFoodService(provider.mockService.baseUrl);
+    provider = getFoodService(provider.mockService.baseUrl);
   });
 
   describe("food endpoint", () => {
@@ -32,7 +32,7 @@ pactWith({ consumer: "Person", provider: "Food" }, (provider) => {
     );
 
     it("returns status", async () => {
-      const body = await client.getFood();
+      const body = await provider.getFood();
       expect(body).toEqual({});
     });
   });
