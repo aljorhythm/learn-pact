@@ -75,6 +75,7 @@ return originalBody.results
 [consumer/pact/pacts](consumer/pact/pacts)
 
 `git add . && git commit`
+
 `parse response from Food GET /food`
 
 ### Consumer: publish updated contract
